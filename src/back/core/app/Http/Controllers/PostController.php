@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Reps\PostRepository;
+use App\Classes\ResponseBuilder;
 use App\Classes\TimeParser;
 use App\Models\SocialPost;
 use Carbon\Carbon;
@@ -12,10 +13,31 @@ class PostController extends Controller
 {
     private const POST_COUNT_LIMIT = 50;
 
-    public static function createPost(int $userId, string $socialId, string $text = null, array $files): SocialPost
+    public static function createPost(Request $request)
     {
+        $socialId = $request->socialId;
+        $userId = $request->userId;
+        $text = $request->text;
+
+        if ($request->postFiles) {
+            $files = $request->postFiles;
+        }
         $filesPath = json_encode(FileController::saveFiles($files));
-        return PostRepository::addPost($userId, (int)$socialId, $text, $filesPath);
+        $postId = PostRepository::addPost($userId, (int)$socialId, $text, $filesPath)->id;
+        $result = ResponseBuilder::okResponse($postId);
+        return response($result, $result['status']);
+    }
+
+    public function getPublicPosts(string $socialId, string $userId)
+    {
+        $result = ResponseBuilder::okResponse(PostController::getPostsForPublicUserFeed((int)$socialId, (int)$userId));
+        return response($result, $result['status']);
+    }
+
+    public function getPrivatePosts(string $socialId, string $userId)
+    {
+        $result = ResponseBuilder::okResponse(PostController::getPostsForPrivateUserFeed((int)$socialId, (int)$userId));
+        return response($result, $result['status']);
     }
 
     public static function getUserPosts(int $socialId, int $userId, int $skip = 0)

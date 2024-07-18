@@ -6,9 +6,9 @@ services:
       - 8080:8080
     volumes:
       - ../confs/nginx_2.conf:/etc/nginx/conf.d/default.conf:ro
-      - ../src/back/core:/var/www/spheer/core
       - ../src/front:/var/www/spheer/front
-      - ../src/back/auth:/var/www/spheer/auth
+      - ../src/back/core:/var/www/spheer/core
+      - ../src/back/search:/var/www/spheer/search
     restart: always
     depends_on:
       - mysql
@@ -24,6 +24,17 @@ services:
     container_name: app_core
     networks:
       - back_front
+      - default
+
+  search_service:
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+    volumes:
+      - ../src/back/search:/var/www/spheer/search
+      - ../confs/php.ini:/usr/local/etc/php/php.ini
+    container_name: app_search_service
+    networks:
       - default
 
   vue:

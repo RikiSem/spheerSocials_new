@@ -4,8 +4,7 @@ import App from './App.vue';
 import components from './Components/UI';
 import directives from './Directives';
 import router from "./routes/router.js";
-import { useCookies } from "vue3-cookies";
-
+import store from "./Store";
 
 const app = createApp(App);
 components.forEach(component => {
@@ -19,5 +18,5 @@ app.config.globalProperties.coreUrl = 'http://localhost:8080';
 
 app
     .use(router)
-    .use(useCookies)
+    .use(store)
     .mount('#app');

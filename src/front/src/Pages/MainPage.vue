@@ -1,6 +1,6 @@
 <template>
     <user-page-component>
-        <div v-test class="userSettings">
+        <div class="userSettings">
             <strong class="display-6"> Настройки профиля </strong>
                 <div class="avatarSetting">
                     <img class="avatarImg" :src="this.avatarPic">
@@ -36,12 +36,17 @@ export default {
     },
     mounted() {
         this.getAvatar();
+        this.getUser();
         document.title = 'Профиль';
     },
     methods: {
         async getAvatar(){
             const response = await axios.get(this.coreUrl + `/api/user/${ this.$route.params.userId }/getAvatar`);
             this.avatarPic = response.data.content;
+        },
+        async getUser(){
+          const response = await axios.get(this.coreUrl + `/api/user/${ this.$route.params.userId }/get`);
+          this.$store.commit('getUser', response.data.content);
         }
     }
 }

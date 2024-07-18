@@ -22,6 +22,7 @@ return new class extends Migration
                 ->default(null);
             $table->string('about')->nullable(true);
             $table->boolean('isPremium')->default(false);
+            $table->boolean('isAdmin')->default(false);
             $table->timestamps();
         });
     }

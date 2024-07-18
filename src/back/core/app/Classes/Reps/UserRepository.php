@@ -18,7 +18,7 @@ class UserRepository
 
     public static function getUserById(int $userId): User
     {
-        return User::select('users.id', 'users.login', 'users.about', 'users.isPremium', 'user_social_limits.limit')
+        return User::select('users.*', 'user_social_limits.limit')
             ->where('users.id', '=', $userId)
             ->join('user_social_limits', 'user_social_limits.userId', '=', 'users.id')
             ->first();

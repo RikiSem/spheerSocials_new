@@ -13,7 +13,8 @@
     "vue": "^3.4.29",
     "vue-cookies": "^1.8.4",
     "vue-router": "^4.4.0",
-    "vue3-cookies": "^1.0.6"
+    "vue3-cookies": "^1.0.6",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

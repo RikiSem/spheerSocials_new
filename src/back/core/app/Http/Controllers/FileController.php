@@ -53,7 +53,6 @@ class FileController extends Controller
 
     public static function getPathByFileType(UploadedFile $file): string
     {
-        $result = '';
         if (in_array($file->getClientOriginalExtension(), self::IMG_EXTENTIONS)) {
             $result = self::IMG_FOLDER;
         } elseif (in_array($file->getClientOriginalExtension(), self::VIDEO_EXTENTIONS)) {

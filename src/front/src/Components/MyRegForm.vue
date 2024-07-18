@@ -42,7 +42,7 @@ export default {
             try {
                 const response = await axios.post(this.coreUrl + `/api/registration`, this.loginAuth);
                 this.$emit('cookie', response.data.content)
-                if (resp.status === 200) {
+                if (response.status === 200) {
                     this.$router.push({
                         name: `homePage`,
                         params: {
