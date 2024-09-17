@@ -1,5 +1,7 @@
+name: "spheer_socials"
 services:
   nginx:
+    container_name: spheer_socials_nginx
     image: nginx:stable-alpine
     ports:
       - 80:80
@@ -21,7 +23,7 @@ services:
     volumes:
       - ../src/back/core:/var/www/spheer/core
       - ../confs/php.ini:/usr/local/etc/php/php.ini
-    container_name: app_core
+    container_name: spheer_socials_core
     networks:
       - back_front
       - default
@@ -33,7 +35,7 @@ services:
     volumes:
       - ../src/back/search:/var/www/spheer/search
       - ../confs/php.ini:/usr/local/etc/php/php.ini
-    container_name: app_search_service
+    container_name: spheer_socials_search_service
     networks:
       - default
 
@@ -44,12 +46,13 @@ services:
     volumes:
       - ../src/front:/var/www/spheer/front
     command: npm run build
-    container_name: app_front
+    container_name: spheer_socials_front
     networks:
       - back_front
       - default
 
   mysql:
+    container_name: spheer_socials_mysql
     image: mysql:8.2
     restart: always
     ports:
