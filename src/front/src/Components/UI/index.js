@@ -20,6 +20,7 @@ import ReactionBtn from "./ReactionBtn.vue";
 import PostControlPanel from "./PostControlPanel.vue";
 import MyFile from "./MyFile.vue";
 import ErrorMsg from "./ErrorMsg.vue";
+import SuccessMsg from "./SuccessMsg.vue";
 
 export default [
     MyButton,
@@ -44,4 +45,5 @@ export default [
     PostControlPanel,
     MyFile,
     ErrorMsg,
+    SuccessMsg,
 ]

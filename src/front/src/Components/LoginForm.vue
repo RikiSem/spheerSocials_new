@@ -1,7 +1,8 @@
 <template>
     <form @submit.prevent>
         <h1 class="dialogHeader">Вход</h1>
-        <error-msg :errorMsg="errorMsg"></error-msg>
+        <error-msg :msg="errorMsg"></error-msg>
+        <success-msg :msg="successMsg"></success-msg>
         <my-input-login @changeLogin="setLogin"></my-input-login>
         <my-input-pass @changePass="setPass"></my-input-pass>
         <MyButton @click="auth">Войти</MyButton>
@@ -12,12 +13,13 @@
 
 export default {
     name: "LoginForm",
-    data() {
+  data() {
         return {
             errorMsg: '',
+            successMsg: '',
             loginAuth: {
-                login: '',
-                pass: '',
+              login: '',
+              pass: '',
             }
         }
     },
@@ -30,6 +32,10 @@ export default {
         },
         setErrorMsg(text) {
             this.errorMsg = text;
+        },
+        setSuccessMsg(text)
+        {
+          this.successMsg = text
         },
         async auth(){
             try {

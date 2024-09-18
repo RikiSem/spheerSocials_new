@@ -26,21 +26,20 @@ export default {
     },
     mounted() {
         this.getFeedData();
-        this.getPrivatePosts();
-        this.getPublicPosts();
+
     },
     methods: {
         async getPrivatePosts() {
-            const response = await axios.get(`/api/post/private/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
+            const response = await axios.get(this.coreUrl + `/api/post/private/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
             this.privateFeedData = response.data.content;
         },
         async getPublicPosts() {
-            const response = await axios.get(`/api/post/public/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
+            const response = await axios.get(this.coreUrl + `/api/post/public/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
+            this.publicFeedData = response.data.content;
         },
         async getFeedData(){
-            const response = await axios.get(`/api/post/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
-            this.privateFeedData = response.data.content['privateFeed'];
-            this.publicFeedData = response.data.content['publicFeed'];
+          await this.getPrivatePosts();
+          await this.getPublicPosts();
         },
         openPublic(){
             this.privateFeed = false;

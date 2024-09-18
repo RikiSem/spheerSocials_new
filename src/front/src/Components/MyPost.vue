@@ -1,6 +1,8 @@
 <template>
     <div class="post">
         <div class="feedItemHeader">
+            <img class="avatar" :src=item.author.avatar>
+            <p>{{ item.author.login }}</p>
             <p>{{ item.created_at }}</p>
         </div>
         <div class="feedItemBody">
@@ -25,6 +27,9 @@ export default {
 </script>
 
 <style scoped>
+.avatar{
+  border-radius: 50%;
+}
 .post{
     padding: 5px;
     min-width: 70%;

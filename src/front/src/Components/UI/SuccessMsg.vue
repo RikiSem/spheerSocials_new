@@ -1,10 +1,10 @@
 <template>
-    <span style="color: #ad2828"> {{ msg }} </span>
+    <span style="color: #39b443"> {{ msg }} </span>
 </template>
 
 <script>
 export default {
-    name: "ErrorMsg",
+    name: "SuccessMsg",
     props: {
       msg: {
             type: String

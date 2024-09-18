@@ -1,11 +1,12 @@
 <template>
     <form @submit.prevent>
-        <h1 class="dialogHeader">Регистрация</h1>
-        <error-msg :errorMsg="errorMsg"></error-msg>
-        <my-input-login @changeLogin="setLogin"></my-input-login>
-        <my-input-mail @changeEmail="setMail"></my-input-mail>
-        <my-input-pass @changePass="setPass"></my-input-pass>
-        <MyButton @click="sendInfo">Регистрация</MyButton>
+      <h1 class="dialogHeader">Регистрация</h1>
+      <error-msg :msg="errorMsg"></error-msg>
+      <success-msg :msg="successMsg"></success-msg>
+      <my-input-login @changeLogin="setLogin"></my-input-login>
+      <my-input-mail @changeEmail="setMail"></my-input-mail>
+      <my-input-pass @changePass="setPass"></my-input-pass>
+      <MyButton @click="sendInfo">Регистрация</MyButton>
     </form>
 </template>
 
@@ -16,12 +17,13 @@ export default {
     name: "MyRegForm",
     data() {
         return {
-            errorMsg: '',
-            loginAuth: {
-                login: '',
-                mail: '',
-                pass: '',
-            }
+          errorMsg: '',
+          successMsg: '',
+          loginAuth: {
+              login: '',
+              mail: '',
+              pass: '',
+          }
         }
     },
     methods: {
@@ -37,6 +39,10 @@ export default {
         setErrorMsg(text)
         {
             this.errorMsg = text;
+        },
+        setSuccessMsg(text)
+        {
+            this.successMsg = text
         },
         async sendInfo(){
             try {
