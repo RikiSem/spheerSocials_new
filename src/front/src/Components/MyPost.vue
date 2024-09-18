@@ -1,7 +1,7 @@
 <template>
     <div class="post">
         <div class="feedItemHeader">
-            <img class="avatar" :src=item.author.avatar>
+            <img class="avatar" :src="this.coreUrl + item.author.avatar">
             <p>{{ item.author.login }}</p>
             <p>{{ item.created_at }}</p>
         </div>
@@ -28,6 +28,7 @@ export default {
 
 <style scoped>
 .avatar{
+  width: clamp(5rem, 0.25rem + 2vw, 2rem);
   border-radius: 50%;
 }
 .post{

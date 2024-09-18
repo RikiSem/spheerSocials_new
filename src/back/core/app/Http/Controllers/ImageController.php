@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class ImageController extends Controller
 {
     private const DEFAULT_AVATAR = 'default.png';
+    private const AVATAR_PATH = 'imgs/avatars/';
 
     public static function getUserAvatar(int $userId): string
     {
@@ -24,6 +25,6 @@ class ImageController extends Controller
 
     public static function getDefaultAvatar()
     {
-        return Storage::url('imgs/avatars/' . self::DEFAULT_AVATAR);
+        return Storage::url(self::AVATAR_PATH . self::DEFAULT_AVATAR);
     }
 }

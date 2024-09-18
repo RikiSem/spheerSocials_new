@@ -42,7 +42,7 @@ export default {
     methods: {
         async getAvatar(){
             const response = await axios.get(this.coreUrl + `/api/user/${ this.$route.params.userId }/getAvatar`);
-            this.avatarPic = response.data.content;
+            this.avatarPic = this.coreUrl +  response.data.content;
         },
         async getUser(){
           const response = await axios.get(this.coreUrl + `/api/user/${ this.$route.params.userId }/get`);
